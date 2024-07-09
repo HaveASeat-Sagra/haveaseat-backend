@@ -1,3 +1,4 @@
+using haveaseat.DTOs;
 using haveaseat.Entities;
 using haveaseat.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,8 @@ public class DeskController : ControllerBase
     }
     
     [HttpGet("getAllDesks")]
-    public async Task<ActionResult<List<Desk>>> GetAllDesks()
+    [ProducesResponseType(typeof(List<DeskDTO>), 200)]
+    public async Task<IActionResult> GetAllDesks()
     {
         var desks = await _deskRepository.GetAllDesks();
         return Ok(desks);

@@ -1,4 +1,5 @@
 using haveaseat.DbContexts;
+using haveaseat.DTOs;
 using haveaseat.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +12,24 @@ public class DeskRepository : IDeskRepository
     {
         _context = context;
     }
-    public async Task<List<Desk>> GetAllDesks()
+    public async Task<List<DeskDTO>> GetAllDesks()
     {
-        var desks = await _context.Desks.ToListAsync();
-        return desks;
+        List<Desk> desks = await _context.Desks.Include(d => d.Chairs).ToListAsync();
+        List<DeskDTO> deskDtos = desks.Select(d => new DeskDTO
+        {
+            Id = d.Id,
+            PositionX = d.PositionX,
+            PositionY = d.PositionY,
+            Width = d.Width,
+            Height = d.Height,
+            Chairs = d.Chairs
+                .Select(c => new ChairDTO
+                {
+                    Id = c.Id, 
+                    PositionX = c.PositionX, 
+                    PositionY = c.PositionY
+                })
+        }).ToList();
+        return deskDtos;
     }
 }
