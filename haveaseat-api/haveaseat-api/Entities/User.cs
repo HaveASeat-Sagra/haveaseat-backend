@@ -1,10 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using haveaseat.Models;
 
 namespace haveaseat.Entities;
 
 public class User
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
     public long Id { get; set; }
     
     [MaxLength(45)]
