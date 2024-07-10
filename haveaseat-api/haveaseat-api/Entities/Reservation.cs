@@ -1,7 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace haveaseat.Entities;
 
 public class Reservation
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
     public long Id { get; set; }
     public DateOnly Date { get; set; }
     

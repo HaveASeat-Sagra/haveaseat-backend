@@ -22,13 +22,7 @@ public class DeskRepository : IDeskRepository
             PositionY = d.PositionY,
             Width = d.Width,
             Height = d.Height,
-            Chairs = d.Chairs
-                .Select(c => new ChairDTO
-                {
-                    Id = c.Id, 
-                    PositionX = c.PositionX, 
-                    PositionY = c.PositionY
-                })
+            Chairs = d.Chairs.Select(c => new ChairDTO(c))
         }).ToList();
         return deskDtos;
     }

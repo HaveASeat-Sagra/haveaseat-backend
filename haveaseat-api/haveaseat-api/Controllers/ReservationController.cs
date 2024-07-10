@@ -7,15 +7,8 @@ namespace haveaseat_api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ReservationController : ControllerBase
+public class ReservationController(IReservationRepository _reservationRepository) : ControllerBase
 {
-    private readonly IReservationRepository _reservationRepository;
-
-    public ReservationController(IReservationRepository reservationRepository)
-    {
-        _reservationRepository = reservationRepository;
-    }
-
     [HttpGet("/{email}")]
     [ProducesResponseType(typeof(List<ReservationDTO>), 200)]
     public async Task<IActionResult> ReservationsByEmail(string email)

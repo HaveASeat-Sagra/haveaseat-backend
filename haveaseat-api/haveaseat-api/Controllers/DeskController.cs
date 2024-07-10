@@ -19,7 +19,7 @@ public class DeskController : ControllerBase
     [ProducesResponseType(typeof(List<DeskDTO>), 200)]
     public async Task<IActionResult> GetAllDesks()
     {
-        var desks = await _deskRepository.GetAllDesks();
-        return Ok(desks);
+        var result = await _deskRepository.GetAllDesks();
+        return Ok(result);
     }
 }
