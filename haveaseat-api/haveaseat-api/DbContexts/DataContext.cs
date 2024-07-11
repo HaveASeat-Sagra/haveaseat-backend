@@ -54,7 +54,7 @@ public class DataContext : DbContext
         modelBuilder.Entity<User>()
             .Property(b => b.Role)
             .HasDefaultValue(Role.EMPLOYEE);
-
+        
         modelBuilder.Entity<User>()
             .HasIndex(b => b.Email)
             .IsUnique();
