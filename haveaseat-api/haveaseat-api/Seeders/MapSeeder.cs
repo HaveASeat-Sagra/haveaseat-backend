@@ -1,5 +1,6 @@
 using haveaseat.DbContexts;
 using haveaseat.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace haveaseat_api.Seeders;
 
@@ -28,6 +29,11 @@ public static class MapSeeder
             try
             {
                 context.Database.EnsureCreated();
+
+                context.Database.ExecuteSqlRaw(
+                    "TRUNCATE TABLE \"Cells\" RESTART IDENTITY;" +
+                    "TRUNCATE TABLE \"Rooms\" CASCADE;");
+                
                 Room? rooms = context.Rooms.FirstOrDefault();
 
                 if (rooms == null)
@@ -37,7 +43,14 @@ public static class MapSeeder
                         new Room { Id = 2, Name = "2.8" },
                         new Room {Id = 3, Name = "2.9"},
                         new Room {Id = 4, Name = "2.10"},
-                        new Room {Id = 5, Name = "2.11"}
+                        new Room {Id = 5, Name = "2.11"},
+                        new Room {Id = 6, Name = "2.12"},
+                        new Room {Id = 7, Name = "2.13"},
+                        new Room {Id = 8, Name = "2.14"},
+                        new Room {Id = 9, Name = "2.15"},
+                        new Room {Id = 10, Name = "2.16"},
+                        new Room {Id = 11, Name = "2.17"},
+                        new Room {Id = 12, Name = "2.18"}
                     );
                 }
 
@@ -101,23 +114,23 @@ public static class MapSeeder
 
                     for (int y = 1; y <= 4; y++)
                     {
-                        for (int x = 5; x <= 6; x++)
+                        for (int x = 3; x <= 4; x++)
                         {
                             string border = Border.None;
-                            if (y == 1 && x == 5)
+                            if (y == 1 && x == 3)
                             {
                                 border = Border.TopLeft;
                             }
-                            else if (y == 4 && x == 6)
+                            else if (y == 4 && x == 4)
                             {
                                 border = Border.BottomRight;
                             }
 
-                            else if (y == 1 && x == 6)
+                            else if (y == 1 && x == 4)
                             {
                                 border = Border.TopRight;
                             }
-                            else if (x == 5)
+                            else if (x == 3)
                             {
                                 border = Border.Left;
                             }
@@ -127,7 +140,7 @@ public static class MapSeeder
                                 border = Border.Top;
                             }
 
-                            else if (x == 6)
+                            else if (x == 4)
                             {
                                 border = Border.Right;
                             }
@@ -146,28 +159,26 @@ public static class MapSeeder
                 // room 2.9
                 if (context.Rooms.FirstOrDefault(r => r.Id == 3).Cells == null)
                 {
-
-                    //room 2.9
                     for (int y = 1; y <= 6; y++)
                     {
-                        for (int x = 7; x <= 8; x++)
+                        for (int x = 5; x <= 6; x++)
                         {
                             string border = Border.None;
-                            if (y == 1 && x == 7)
+                            if (y == 1 && x == 5)
                             {
                                 border = Border.TopLeft;
                             }
-                            else if (y == 6 && x == 8)
+                            else if (y == 6 && x == 6)
                             {
                                 border = Border.BottomRight;
                             }
 
-                            else if (y == 1 && x == 8)
+                            else if (y == 1 && x == 6)
                             {
                                 border = Border.TopRight;
                             }
                             
-                            else if (x == 7)
+                            else if (x == 5)
                             {
                                 border = Border.Left;
                             }
@@ -177,7 +188,7 @@ public static class MapSeeder
                                 border = Border.Top;
                             }
 
-                            else if (x == 8)
+                            else if (x == 6)
                             {
                                 border = Border.Right;
                             }
@@ -200,25 +211,25 @@ public static class MapSeeder
 
                     for (int y = 1; y <= 3; y++)
                     {
-                        for (int x = 9; x <= 12; x++)
+                        for (int x = 7; x <= 10; x++)
                         {
                             string border = Border.None;
-                            if (y == 1 && x == 9)
+                            if (y == 1 && x == 7)
                             {
                                 border = Border.TopLeft;
                             }
 
-                            else if (y == 1 && x == 12)
+                            else if (y == 1 && x == 10)
                             {
                                 border = Border.TopRight;
                             }
                             
-                            else if (y == 3 && x == 12)
+                            else if (y == 3 && x == 10)
                             {
                                 border = Border.BottomRight;
                             }
                             
-                            else if (x == 9)
+                            else if (x == 7)
                             {
                                 border = Border.Left;
                             }
@@ -228,7 +239,7 @@ public static class MapSeeder
                                 border = Border.Top;
                             }
                             
-                            else if (y == 3 && x == 11)
+                            else if (y == 3 && (x == 9 || x == 10))
                             {
                                 border = Border.Bottom;
                             }
@@ -245,26 +256,21 @@ public static class MapSeeder
                     
                     for (int y = 4; y <= 6; y++)
                     {
-                        for (int x = 9; x <= 10; x++)
+                        for (int x = 7; x <= 8; x++)
                         {
                             string border = Border.None;
                             
-                            if (y == 6 && x == 9)
+                            if (y == 6 && x == 7)
                             {
                                 border = Border.BottomLeft;
                             }
                             
-                            else if (y == 6 && x == 10)
-                            {
-                                border = Border.Bottom;
-                            }
-                            
-                            else if (x == 9)
+                            else if (x == 7)
                             {
                                 border = Border.Left;
                             }
                             
-                            else if (x == 10)
+                            else if (x == 8)
                             {
                                 border = Border.Right;
                             }
@@ -287,25 +293,25 @@ public static class MapSeeder
 
                     for (int y = 1; y <= 3; y++)
                     {
-                        for (int x = 13; x <= 15; x++)
+                        for (int x = 11; x <= 13; x++)
                         {
                             string border = Border.None;
-                            if (y == 1 && x == 13)
+                            if (y == 1 && x == 11)
                             {
                                 border = Border.TopLeft;
                             }
 
-                            else if (y == 1 && x == 15)
+                            else if (y == 1 && x == 13)
                             {
                                 border = Border.TopRight;
                             }
                             
-                            else if (y == 3 && x == 13)
+                            else if (y == 3 && x == 11)
                             {
                                 border = Border.BottomLeft;
                             }
                             
-                            else if (x == 15)
+                            else if (x == 13)
                             {
                                 border = Border.Right;
                             }
@@ -327,21 +333,21 @@ public static class MapSeeder
                     
                     for (int y = 4; y <= 6; y++)
                     {
-                        for (int x = 14; x <= 15; x++)
+                        for (int x = 12; x <= 13; x++)
                         {
                             string border = Border.None;
                             
-                            if (y == 6 && x == 15)
+                            if (y == 6 && x == 13)
                             {
                                 border = Border.BottomRight;
                             }
                             
-                            else if (x == 14)
+                            else if (x == 12)
                             {
                                 border = Border.Left;
                             }
                             
-                            else if (x == 15)
+                            else if (x == 13)
                             {
                                 border = Border.Right;
                             }
@@ -352,102 +358,421 @@ public static class MapSeeder
                                 PositionX = x,
                                 PositionY = y,
                                 Border = border,
-                                RoomId = 4,
+                                RoomId = 5,
                             });
                         }
                     }
-                    context.Cells.AddRange(map);
-                    context.SaveChanges();
                 }
                 
                 // room 2.12
-                if (context.Rooms.FirstOrDefault(r => r.Id == 6).Cells == null)
+                 if (context.Rooms.FirstOrDefault(r => r.Id == 6).Cells == null)
+                 {
+                 
+                     for (int y = 1; y <= 4; y++)
+                     {
+                         for (int x = 14; x <= 17; x++)
+                         {
+                             string border = Border.None;
+                             if (y == 1 && x == 14)
+                             {
+                                 border = Border.TopLeft;
+                             }
+                 
+                             else if (y == 1 && x == 17)
+                             {
+                                 border = Border.TopRight;
+                             }
+                             
+                             else if (y == 4 && x == 17)
+                             {
+                                 border = Border.BottomRight;
+                             }
+                             
+                             else if (x == 17)
+                             {
+                                 border = Border.Right;
+                             }
+                             
+                             else if (x == 14)
+                             {
+                                 border = Border.Left;
+                             }
+                 
+                             else if (y == 1)
+                             {
+                                 border = Border.Top;
+                             }
+                             
+                             else if (x == 16 && y == 4)
+                             {
+                                 border = Border.Bottom;
+                             }
+                 
+                             map.Add(new Cell
+                             {
+                                 PositionX = x,
+                                 PositionY = y,
+                                 Border = border,
+                                 RoomId = 6,
+                             });
+                         }
+                     }
+                     
+                 
+                     for (int y = 5; y <= 6; y++)
+                     {
+                         for (int x = 14; x <= 15; x++)
+                         {
+                             string border = Border.None;
+                         
+                             if (y == 6 && x == 14)
+                             {
+                                 border = Border.BottomLeft;
+                             }
+                         
+                             else if (x == 15 && y == 6)
+                             {
+                                 border = Border.Right;
+                             }
+                         
+                             else if (x == 14)
+                             {
+                                 border = Border.Left;
+                             }
+                         
+                     
+                             map.Add(new Cell
+                             {
+                                 PositionX = x,
+                                 PositionY = y,
+                                 Border = border,
+                                 RoomId = 6,
+                             });
+                         }
+                     }
+                 
+                 }
+
+                // room 2.13
+                if (context.Rooms.FirstOrDefault(r => r.Id == 7).Cells == null)
                 {
-
-                    for (int y = 1; y <= 4; y++)
-                    {
-                        for (int x = 16; x <= 19; x++)
-                        {
-                            string border = Border.None;
-                            if (y == 1 && x == 16)
-                            {
-                                border = Border.TopLeft;
-                            }
-
-                            else if (y == 1 && x == 19)
-                            {
-                                border = Border.TopRight;
-                            }
-                            
-                            else if (y == 4 && x == 19)
-                            {
-                                border = Border.BottomRight;
-                            }
-                            
-                            else if (x == 19)
-                            {
-                                border = Border.Right;
-                            }
-                            
-                            else if (x == 16)
-                            {
-                                border = Border.Left;
-                            }
-
-                            else if (y == 1)
-                            {
-                                border = Border.Top;
-                            }
-                            
-                            else if (x == 18 && y == 4)
-                            {
-                                border = Border.Bottom;
-                            }
-
-                            map.Add(new Cell
-                            {
-                                PositionX = x,
-                                PositionY = y,
-                                Border = border,
-                                RoomId = 4,
-                            });
-                        }
-                    }
-                    
-                    for (int y = 5; y <= 6; y++)
+                
+                    for (int y = 5; y <= 12; y++)
                     {
                         for (int x = 16; x <= 17; x++)
                         {
                             string border = Border.None;
                             
-                            if (y == 6 && x == 16)
+                            if (y == 12 && x == 16)
                             {
                                 border = Border.BottomLeft;
                             }
                             
-                            else if (x == 17 && y == 6)
+                            else if (y == 5 && x == 17)
+                            {
+                                border = Border.TopRight;
+                            }
+                            
+                            
+                            else if (y == 12 && x == 17)
+                            {
+                                border = Border.BottomRight;
+                            }
+                            
+                            
+                            else if (x == 17)
                             {
                                 border = Border.Right;
                             }
+                
+                            else if (y == 5)
+                            {
+                                border = Border.Top;
+                            }
                             
-                            else if (x == 16)
+                            else if (x == 16 && new []{6,8,9,11}.Contains(y))
                             {
                                 border = Border.Left;
                             }
-                            
-
+                
                             map.Add(new Cell
                             {
                                 PositionX = x,
                                 PositionY = y,
                                 Border = border,
-                                RoomId = 6,
+                                RoomId = 7,
                             });
                         }
                     }
-                    context.Cells.AddRange(map);
-                    context.SaveChanges();
                 }
+                
+                // room 2.14
+                if (context.Rooms.FirstOrDefault(r => r.Id == 8).Cells == null)
+                {
+                    for (int y = 9; y <= 12; y++)
+                    {
+                        for (int x = 13; x <= 15; x++)
+                        {
+                            string border = Border.None;
+
+                            if (x == 15 && y == 12)
+                            {
+                                border = Border.BottomRight;
+                            }
+                            
+                            else if (x == 13 && y == 12)
+                            {
+                                border = Border.BottomLeft;
+                            }
+                            
+                            else if (x == 13 && y == 9)
+                            {
+                                border = Border.TopLeft;
+                            }
+                            
+                            else if (y == 9 && x == 14)
+                            {
+                                border = Border.Top;
+                            }
+                            
+                            else if (x == 15 && new []{9,11,12}.Contains(y))
+                            {
+                                border = Border.Right;
+                            }
+                            
+                            
+                            else if (y == 12 && x == 14)
+                            {
+                                border = Border.Bottom;
+                            }
+                            
+                            else if (x == 13)
+                            {
+                                border = Border.Left;
+                            }
+                            
+                            
+                            map.Add(new Cell
+                            {
+                                PositionX = x,
+                                PositionY = y,
+                                Border = border,
+                                RoomId = 8,
+                            });
+                        }
+                    }
+                }
+                
+                // room 2.15
+                if (context.Rooms.FirstOrDefault(r => r.Id == 9).Cells == null)
+                {
+                    for (int y = 9; y <= 12; y++)
+                    {
+                        for (int x = 9; x <= 12; x++)
+                        {
+                            string border = Border.None;
+
+                            if (y == 12 && x == 9)
+                            {
+                                border = Border.BottomLeft;
+                            }
+                            
+                            else if (y == 12 && x == 12)
+                            {
+                                border = Border.BottomRight;
+                            }
+                            
+                            else if (y == 9 && x == 12)
+                            {
+                                border = Border.TopRight;
+                            }
+                            
+                            else if (y == 9 && (x == 10 || x == 11))
+                            {
+                                border = Border.Top;
+                            }
+                            
+                            else if (y == 12)
+                            {
+                                border = Border.Bottom;
+                            }
+                            
+                            else if (x == 12)
+                            {
+                                border = Border.Right;
+                            }
+                            
+                            else if (x == 9)
+                            {
+                                border = Border.Left;
+                            }
+                            
+                            map.Add(new Cell
+                            {
+                                PositionX = x,
+                                PositionY = y,
+                                Border = border,
+                                RoomId = 9,
+                            });
+                        }
+                    }
+                }
+
+                // room 2.16
+                if (context.Rooms.FirstOrDefault(r => r.Id == 10).Cells == null)
+                {
+                    for (int y = 9; y <= 12; y++)
+                    {
+                        for (int x = 6; x <= 8; x++)
+                        {
+                            string border = Border.None;
+
+                            if (y == 12 && x == 8)
+                            {
+                                border = Border.BottomRight;
+                            }
+                            
+                            else if (y == 12 && x == 6)
+                            {
+                                border = Border.BottomLeft;
+                            }
+                            
+                            else if (y == 9 && x == 6)
+                            {
+                                border = Border.TopLeft;
+                            }
+                            
+                            else if (y == 9 && x == 7)
+                            {
+                                border = Border.Top;
+                            }
+                            
+                            else if (x == 8)
+                            {
+                                border = Border.Right;
+                            }
+                            
+                            else if (y == 12)
+                            {
+                                border = Border.Bottom;
+                            }
+                            
+                            else if (x == 6)
+                            {
+                                border = Border.Left;
+                            }
+                            
+                            map.Add(new Cell
+                            {
+                                PositionX = x,
+                                PositionY = y,
+                                Border = border,
+                                RoomId = 10,
+                            });
+                        }
+                    }
+                }
+                
+                // room 2.17
+                if (context.Rooms.FirstOrDefault(r => r.Id == 11).Cells == null)
+                {
+                    for (int y = 9; y <= 12; y++)
+                    {
+                        int x = 5;
+                        string border = Border.Right;
+                        switch (y)
+                        {
+                            case 9: border = Border.TopRight;
+                                break;
+                            case 12: border = Border.BottomRight; 
+                                break;
+                        }
+                        
+                        map.Add(new Cell
+                        {
+                            PositionX = x,
+                            PositionY = y,
+                            Border = border,
+                            RoomId = 11,
+                        });
+                    }
+
+                    for (int y = 10; y <= 12; y++)
+                    {
+                        string border = Border.Left;
+                        int x = 4;
+                        
+                        switch (y)
+                        {
+                            case 10: border = Border.TopLeft;
+                                break;
+                            case 12: border = Border.BottomLeft; 
+                                break;
+                        }
+                        
+                        map.Add(new Cell
+                        {
+                            PositionX = x,
+                            PositionY = y,
+                            Border = border,
+                            RoomId = 11,
+                        });
+                    }
+                }
+                
+                // room 2.18
+                if (context.Rooms.FirstOrDefault(r => r.Id == 12).Cells == null)
+                {
+                    for (int y = 10; y <= 12; y++)
+                    {
+                        for (int x = 1; x <= 3; x++)
+                        {
+                            string border = Border.None;
+
+                            if (y == 12 && x == 1)
+                            {
+                                border = Border.BottomLeft;
+                            }
+                            else if (y == 12 && x == 3)
+                            {
+                                border = Border.BottomRight;
+                            }
+                            else if (y == 10 && x == 3)
+                            {
+                                border = Border.TopRight;
+                            }
+
+                            else if (y == 10 && x > 1)
+                            {
+                                border = Border.Top;
+                            }
+                            else if (y == 12)
+                            {
+                                border = Border.Bottom;
+                            }
+                            else if (x == 3)
+                            {
+                                border = Border.Right;
+                            }
+                            else if (x == 1)
+                            {
+                                border = Border.Left;
+                            }
+                            
+                            map.Add(new Cell
+                            {
+                                PositionX = x,
+                                PositionY = y,
+                                Border = border,
+                                RoomId = 12,
+                            });
+                            
+                        }
+                    }
+                }
+                
+                context.Cells.AddRange(map);
+                context.SaveChanges();
             }
             
             catch (Exception e)
