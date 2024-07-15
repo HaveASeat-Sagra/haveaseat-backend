@@ -5,18 +5,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace haveaseat.Repositories;
 
-public class MapRepository : IMapRepository
+public class MapRepository(DataContext context) : IMapRepository
 {
-    private readonly DataContext _context;
-
-    public MapRepository(DataContext context)
+    public async Task<List<RoomDTODesks>> GetAllDesks()
     {
-        _context = context;
+        List<Room> rooms = await context.Rooms
+            .Include(r => r.Desks)
+            .ToListAsync();
+        List<RoomDTODesks> deskDtos = rooms.Select(d => new RoomDTODesks(d)).ToList();
+        return deskDtos;
     }
-    
     public async Task<List<RoomDTOCells>> GetAllRooms()
     {
-        List<Room> rooms = await _context.Rooms
+        List<Room> rooms = await context.Rooms
             .Include(c => c.Cells)
             .ToListAsync();
 
@@ -26,7 +27,7 @@ public class MapRepository : IMapRepository
 
     public async Task<List<RoomDTO>> GetAllMap()
     {
-        List<Room> rooms = await _context.Rooms
+        List<Room> rooms = await context.Rooms
             .Include(r => r.Cells)
             .Include(r => r.Desks)
             .ToListAsync();

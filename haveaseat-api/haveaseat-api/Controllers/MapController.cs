@@ -23,4 +23,12 @@ public class MapController(IMapRepository mapRepository) : ControllerBase
         var result = await mapRepository.GetAllMap();
         return Ok(result);
     }
+    
+    [HttpGet("getAllDesks")]
+    [ProducesResponseType(typeof(List<RoomDTODesks>), 200)]
+    public async Task<IActionResult> GetAllDesks()
+    {
+        var result = await mapRepository.GetAllDesks();
+        return Ok(result);
+    }
 }
