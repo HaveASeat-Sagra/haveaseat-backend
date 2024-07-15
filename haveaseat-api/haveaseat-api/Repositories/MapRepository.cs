@@ -23,4 +23,15 @@ public class MapRepository : IMapRepository
         List<RoomDTOCells> roomDtos = rooms.Select(room => new RoomDTOCells(room)).ToList();
         return roomDtos;
     }
+
+    public async Task<List<RoomDTO>> GetAllMap()
+    {
+        List<Room> rooms = await _context.Rooms
+            .Include(r => r.Cells)
+            .Include(r => r.Desks)
+            .ToListAsync();
+
+        List<RoomDTO> roomDtos = rooms.Select(room => new RoomDTO(room)).ToList();
+        return roomDtos;
+    }
 }
