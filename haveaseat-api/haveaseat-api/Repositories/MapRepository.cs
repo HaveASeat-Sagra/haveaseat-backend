@@ -14,13 +14,13 @@ public class MapRepository : IMapRepository
         _context = context;
     }
     
-    public async Task<List<RoomDTO>> GetAllRooms()
+    public async Task<List<RoomDTOCells>> GetAllRooms()
     {
         List<Room> rooms = await _context.Rooms
             .Include(c => c.Cells)
             .ToListAsync();
 
-        List<RoomDTO> roomDtos = rooms.Select(room => new RoomDTO(room)).ToList();
+        List<RoomDTOCells> roomDtos = rooms.Select(room => new RoomDTOCells(room)).ToList();
         return roomDtos;
     }
 }

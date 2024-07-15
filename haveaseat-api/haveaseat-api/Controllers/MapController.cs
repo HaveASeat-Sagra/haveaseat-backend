@@ -9,7 +9,7 @@ namespace haveaseat_api.Controllers;
 public class MapController(IMapRepository mapRepository) : ControllerBase
 {
     [HttpGet("getAllRooms")]
-    [ProducesResponseType(typeof(List<RoomDTO>), 200)]
+    [ProducesResponseType(typeof(List<RoomDTOCells>), 200)]
     public async Task<IActionResult> GetAllRooms()
     {
         var result = await mapRepository.GetAllRooms();

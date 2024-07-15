@@ -1,8 +1,8 @@
 namespace haveaseat.DTOs;
 
-public class RoomDTO
+public class RoomDTOCells
 {
-    public RoomDTO(Room room)
+    public RoomDTOCells(Room room)
     {
         Id = room.Id;
         Name = room.Name;

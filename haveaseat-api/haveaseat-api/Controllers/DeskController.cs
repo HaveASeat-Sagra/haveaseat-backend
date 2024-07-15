@@ -16,7 +16,7 @@ public class DeskController : ControllerBase
     }
     
     [HttpGet("getAllDesks")]
-    [ProducesResponseType(typeof(List<DeskDTO>), 200)]
+    [ProducesResponseType(typeof(List<RoomDTODesks>), 200)]
     public async Task<IActionResult> GetAllDesks()
     {
         var result = await _deskRepository.GetAllDesks();

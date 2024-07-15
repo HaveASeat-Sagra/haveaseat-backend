@@ -12,10 +12,12 @@ public class DeskRepository : IDeskRepository
     {
         _context = context;
     }
-    public async Task<List<DeskDTO>> GetAllDesks()
+    public async Task<List<RoomDTODesks>> GetAllDesks()
     {
-        List<Desk> desks = await _context.Desks.ToListAsync();
-        List<DeskDTO> deskDtos = desks.Select(d => new DeskDTO(d)).ToList();
+        List<Room> rooms = await _context.Rooms
+            .Include(r => r.Desks)
+            .ToListAsync();
+        List<RoomDTODesks> deskDtos = rooms.Select(d => new RoomDTODesks(d)).ToList();
         return deskDtos;
     }
 }
