@@ -33,7 +33,7 @@ public class ReservationRepository(DataContext context) : IReservationRepository
         return reservationDtos;
     }
 
-    public async Task<AddReservationDTO> InsertReservations(AddReservationDTO reservation)
+    public async Task<NewReservationDTO> InsertReservations(NewReservationDTO reservation)
     {
         Reservation entry = new Reservation
         {

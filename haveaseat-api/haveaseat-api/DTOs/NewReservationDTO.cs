@@ -2,11 +2,11 @@ using System.Text.Json.Serialization;
 
 namespace haveaseat.DTOs;
 
-public class AddReservationDTO
+public class NewReservationDTO
 {
-    [JsonConstructor] public AddReservationDTO() {}
+    [JsonConstructor] public NewReservationDTO() {}
     
-    public AddReservationDTO(Reservation reservation)
+    public NewReservationDTO(Reservation reservation)
     {
         Date = reservation.Date;
         DeskId = reservation.DeskId;

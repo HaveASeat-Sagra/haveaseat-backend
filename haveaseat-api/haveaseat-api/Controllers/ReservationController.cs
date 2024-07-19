@@ -23,7 +23,7 @@ public class ReservationController(IReservationRepository _reservationRepository
     
     [HttpGet("getByDay/{date}")]
     [ProducesResponseType(typeof(List<ReservationDTO>), 200)]
-    public async Task<IActionResult> ReservationsByEmail(DateOnly date)
+    public async Task<IActionResult> ReservationsByDate(DateOnly date)
     {
         List<ReservationDTO> result = await _reservationRepository.GetReservationsByDay(date);
         if (!result.Any())
@@ -34,9 +34,9 @@ public class ReservationController(IReservationRepository _reservationRepository
     }
 
     [HttpPost("newReservation")]
-    public async Task<IActionResult> InsertReservation(AddReservationDTO reservation)
+    public async Task<IActionResult> InsertReservation(NewReservationDTO reservation)
     {
-        var result = await _reservationRepository.InsertReservations(reservation);
+        NewReservationDTO result = await _reservationRepository.InsertReservations(reservation);
         return Created("Reservation added", result);
     }
 } 
