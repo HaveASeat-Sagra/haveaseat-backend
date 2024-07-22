@@ -39,4 +39,12 @@ public class ReservationController(IReservationRepository _reservationRepository
         NewReservationDTO result = await _reservationRepository.InsertReservations(reservation);
         return Created("Reservation added", result);
     }
+
+    [HttpDelete("delete/{id}")]
+    [ProducesResponseType(typeof(NewReservationDTO), 202)]
+    public async Task<IActionResult> DeleteReservation(long id)
+    {
+        NewReservationDTO result = await _reservationRepository.DeleteReservationById(id);
+        return Accepted(result);
+    }
 } 

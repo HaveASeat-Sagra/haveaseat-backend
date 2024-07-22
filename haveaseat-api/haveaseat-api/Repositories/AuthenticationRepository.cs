@@ -42,4 +42,5 @@ public class AuthenticationRepository(DataContext context) : IAuthenticationRepo
         UserDTO userDto = new UserDTO(user);
         return userDto;
     }
+    
 }

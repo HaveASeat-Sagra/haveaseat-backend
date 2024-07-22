@@ -45,4 +45,13 @@ public class ReservationRepository(DataContext context) : IReservationRepository
         await context.SaveChangesAsync();
         return reservation;
     }
+
+    public async Task<NewReservationDTO> DeleteReservationById(long reservationId)
+    {
+        Reservation? result = await context.Reservations.FirstOrDefaultAsync(reservation => reservation.Id == reservationId);
+        NewReservationDTO reservationDto = new NewReservationDTO(result);
+        context.Reservations.Remove(result);
+        await context.SaveChangesAsync();
+        return reservationDto;
+    }
 }
