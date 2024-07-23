@@ -28,7 +28,7 @@ public class ReservationController(IReservationRepository _reservationRepository
         List<ReservationDTO> result = await _reservationRepository.GetReservationsByDay(date);
         if (!result.Any())
         {
-            return NotFound(new { Message = "No reservations for this day", Date = date });
+            return Ok(new List<ReservationDTO>());
         }
         return Ok(result);
     }
