@@ -10,7 +10,7 @@ public class Cell
     public long Id { get; set; }
     public int PositionX { get; set; }
     public int PositionY { get; set; }
-    [MaxLength(23)]
+    [MaxLength(50)]
     public string Border { get; set; } = "none";
     public Room Room { get; set; }
     public long RoomId { get; set; }
