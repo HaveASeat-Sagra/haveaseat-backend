@@ -58,5 +58,13 @@ public class DataContext : DbContext
         modelBuilder.Entity<User>()
             .HasIndex(b => b.Email)
             .IsUnique();
+
+        modelBuilder.Entity<Area>()
+            .HasData(new Area
+            {
+                Id = 1,
+                Height = 11,
+                Width = 15
+            });
     }
 }
