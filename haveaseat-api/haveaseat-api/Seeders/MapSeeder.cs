@@ -13,10 +13,10 @@ public static class MapSeeder
     {
         public const string Left = "-4px 0px 0px 0px black";
         public const string TopLeft = "-2px -2px 0px 2px black";
-        public const string Top = "2px -2px 0px 2px black";
+        public const string Top = "0px -4px 0px 0px black";
         public const string None = "none";
         public const string Right = "4px 0px 0px 0px black";
-        public const string Bottom = "2px 2px 0px 2px black";
+        public const string Bottom = "0px 4px 0px 0px black";
         public const string TopRight = "2px -2px 0px 2px black";
         public const string BottomLeft = "-2px 2px 0px 2px black";
         public const string BottomRight = "2px 2px 0px 2px black";
