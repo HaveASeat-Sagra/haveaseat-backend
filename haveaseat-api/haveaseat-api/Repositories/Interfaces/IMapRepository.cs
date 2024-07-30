@@ -4,5 +4,7 @@ namespace haveaseat.Repositories.Interfaces;
 
 public interface IMapRepository
 {
-    Task<List<RoomDTO>> GetAllRooms();
+    Task<List<RoomDTOCells>> GetAllRooms();
+    Task<List<RoomDTO>> GetAllMap();
+    Task<List<RoomDTODesks>> GetAllDesks();
 }

@@ -9,7 +9,7 @@ namespace haveaseat_api.Controllers;
 [Route("api/[controller]")]
 public class ReservationController(IReservationRepository _reservationRepository) : ControllerBase
 {
-    [HttpGet("/{email}")]
+    [HttpGet("getByEmail/{email}")]
     [ProducesResponseType(typeof(List<ReservationDTO>), 200)]
     public async Task<IActionResult> ReservationsByEmail(string email)
     {
@@ -18,7 +18,25 @@ public class ReservationController(IReservationRepository _reservationRepository
         {
             return NotFound(new { Message = "No reservations for given user", User = email });
         }
-
         return Ok(result);
+    }
+    
+    [HttpGet("getByDay/{date}")]
+    [ProducesResponseType(typeof(List<ReservationDTO>), 200)]
+    public async Task<IActionResult> ReservationsByEmail(DateOnly date)
+    {
+        List<ReservationDTO> result = await _reservationRepository.GetReservationsByDay(date);
+        if (!result.Any())
+        {
+            return NotFound(new { Message = "No reservations for this day", Date = date });
+        }
+        return Ok(result);
+    }
+
+    [HttpPost("newReservation")]
+    public async Task<IActionResult> InsertReservation(AddReservationDTO reservation)
+    {
+        var result = await _reservationRepository.InsertReservations(reservation);
+        return Created("Reservation added", result);
     }
 } 

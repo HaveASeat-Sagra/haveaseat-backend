@@ -5,4 +5,7 @@ namespace haveaseat.Repositories.Interfaces;
 public interface IReservationRepository
 {
     Task<List<ReservationDTO>> GetReservationsByUserEmail(string email);
+    Task<List<ReservationDTO>> GetReservationsByDay(DateOnly date);
+
+    Task<AddReservationDTO> InsertReservations(AddReservationDTO reservation);
 }

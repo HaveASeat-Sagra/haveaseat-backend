@@ -28,36 +28,38 @@ public static class MapSeeder
             using var context = scope.ServiceProvider.GetRequiredService<DataContext>();
             try
             {
+                //check if database exists
                 context.Database.EnsureCreated();
-
-                context.Database.ExecuteSqlRaw(
-                    "TRUNCATE TABLE \"Cells\" RESTART IDENTITY;" +
-                    "TRUNCATE TABLE \"Rooms\" CASCADE;");
                 
-                Room? rooms = context.Rooms.FirstOrDefault();
+                //seed only missing rooms
 
-                if (rooms == null)
+                List<Room> rooms = new List<Room>
                 {
-                    context.Rooms.AddRange(
-                        new Room { Id = 1, Name = "2.7" },
-                        new Room { Id = 2, Name = "2.8" },
-                        new Room {Id = 3, Name = "2.9"},
-                        new Room {Id = 4, Name = "2.10"},
-                        new Room {Id = 5, Name = "2.11"},
-                        new Room {Id = 6, Name = "2.12"},
-                        new Room {Id = 7, Name = "2.13"},
-                        new Room {Id = 8, Name = "2.14"},
-                        new Room {Id = 9, Name = "2.15"},
-                        new Room {Id = 10, Name = "2.16"},
-                        new Room {Id = 11, Name = "2.17"},
-                        new Room {Id = 12, Name = "2.18"}
-                    );
+                    new Room { Id = 1, Name = "2.7" },
+                    new Room { Id = 2, Name = "2.8" },
+                    new Room { Id = 3, Name = "2.9" },
+                    new Room { Id = 4, Name = "2.10" },
+                    new Room { Id = 5, Name = "2.11" },
+                    new Room { Id = 6, Name = "2.12" },
+                    new Room { Id = 7, Name = "2.13" },
+                    new Room { Id = 8, Name = "2.14" },
+                    new Room { Id = 9, Name = "2.15" },
+                    new Room { Id = 10, Name = "2.16" },
+                    new Room { Id = 11, Name = "2.17" },
+                    new Room { Id = 12, Name = "2.18" }
+                };
+
+                HashSet<string> existingRooms = context.Rooms.Select(r => r.Name).ToHashSet();
+                List<Room> newRooms = rooms.Where(room => !existingRooms.Contains(room.Name)).ToList();
+                
+                if (newRooms.Any())
+                {
+                    context.Rooms.AddRange(newRooms);
+                    context.SaveChanges();
                 }
-
-                context.SaveChanges();
-
+                
                 // room 2.7
-                if (context.Rooms.FirstOrDefault(r => r.Id == 1).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 1) == null)
                 {
 
                     for (int y = 1; y <= 4; y++)
@@ -109,7 +111,7 @@ public static class MapSeeder
                 }
 
                 //room 2.8
-                if (context.Rooms.FirstOrDefault(r => r.Id == 2).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 2) == null)
                 {
 
                     for (int y = 1; y <= 4; y++)
@@ -157,7 +159,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.9
-                if (context.Rooms.FirstOrDefault(r => r.Id == 3).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 3) == null)
                 {
                     for (int y = 1; y <= 6; y++)
                     {
@@ -206,7 +208,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.10
-                if (context.Rooms.FirstOrDefault(r => r.Id == 4).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 4) == null)
                 {
 
                     for (int y = 1; y <= 3; y++)
@@ -288,7 +290,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.11
-                if (context.Rooms.FirstOrDefault(r => r.Id == 5).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 5) == null)
                 {
 
                     for (int y = 1; y <= 3; y++)
@@ -365,7 +367,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.12
-                 if (context.Rooms.FirstOrDefault(r => r.Id == 6).Cells == null)
+                 if (context.Cells.FirstOrDefault(c => c.RoomId == 6) == null)
                  {
                  
                      for (int y = 1; y <= 4; y++)
@@ -454,7 +456,7 @@ public static class MapSeeder
                  }
 
                 // room 2.13
-                if (context.Rooms.FirstOrDefault(r => r.Id == 7).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 7) == null)
                 {
                 
                     for (int y = 5; y <= 12; y++)
@@ -507,7 +509,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.14
-                if (context.Rooms.FirstOrDefault(r => r.Id == 8).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 8) == null)
                 {
                     for (int y = 9; y <= 12; y++)
                     {
@@ -564,7 +566,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.15
-                if (context.Rooms.FirstOrDefault(r => r.Id == 9).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 9) == null)
                 {
                     for (int y = 9; y <= 12; y++)
                     {
@@ -619,7 +621,7 @@ public static class MapSeeder
                 }
 
                 // room 2.16
-                if (context.Rooms.FirstOrDefault(r => r.Id == 10).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 10) == null)
                 {
                     for (int y = 9; y <= 12; y++)
                     {
@@ -674,7 +676,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.17
-                if (context.Rooms.FirstOrDefault(r => r.Id == 11).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 11) == null)
                 {
                     for (int y = 9; y <= 12; y++)
                     {
@@ -721,7 +723,7 @@ public static class MapSeeder
                 }
                 
                 // room 2.18
-                if (context.Rooms.FirstOrDefault(r => r.Id == 12).Cells == null)
+                if (context.Cells.FirstOrDefault(c => c.RoomId == 12) == null)
                 {
                     for (int y = 10; y <= 12; y++)
                     {
