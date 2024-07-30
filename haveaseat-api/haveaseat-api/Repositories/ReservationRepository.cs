@@ -16,7 +16,7 @@ public class ReservationRepository : IReservationRepository
     public async Task<List<ReservationDTO>> GetReservationsByUserEmail(string email)
     {
         List<Reservation> reservationsOfUser = await _context.Reservations
-            .Include(r => r.Chair) 
+            .Include(r => r.Desk) 
             .Where(reservation => reservation.User.Email == email)
             .ToListAsync();
         

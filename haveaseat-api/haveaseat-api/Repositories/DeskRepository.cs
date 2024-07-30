@@ -14,16 +14,8 @@ public class DeskRepository : IDeskRepository
     }
     public async Task<List<DeskDTO>> GetAllDesks()
     {
-        List<Desk> desks = await _context.Desks.Include(d => d.Chairs).ToListAsync();
-        List<DeskDTO> deskDtos = desks.Select(d => new DeskDTO
-        {
-            Id = d.Id,
-            PositionX = d.PositionX,
-            PositionY = d.PositionY,
-            Width = d.Width,
-            Height = d.Height,
-            Chairs = d.Chairs.Select(c => new ChairDTO(c))
-        }).ToList();
+        List<Desk> desks = await _context.Desks.ToListAsync();
+        List<DeskDTO> deskDtos = desks.Select(d => new DeskDTO(d)).ToList();
         return deskDtos;
     }
 }

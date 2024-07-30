@@ -1,4 +1,5 @@
 global using haveaseat.Entities;
+using haveaseat_api.Seeders;
 using haveaseat.DbContexts;
 using haveaseat.Repositories;
 using haveaseat.Repositories.Interfaces;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IDeskRepository, DeskRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IMapRepository, MapRepository>();
 builder.Services.AddScoped<DataContext>(); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,5 +31,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.SeedMap();
 app.Run();

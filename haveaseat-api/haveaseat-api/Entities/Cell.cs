@@ -3,14 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace haveaseat.Entities;
 
-public class Chair
+public class Cell
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
     public long Id { get; set; }
     public int PositionX { get; set; }
     public int PositionY { get; set; }
-    public long DeskId { get; set; }
-    public Desk Desk { get; set; }
-    public ICollection<Reservation> Reservations { get; }
+    [MaxLength(23)]
+    public string Border { get; set; } = "none";
+    public Room Room { get; set; }
+    public long RoomId { get; set; }
 }

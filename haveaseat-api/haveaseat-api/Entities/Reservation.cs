@@ -13,6 +13,6 @@ public class Reservation
     public long UserId { get; set; }
     public User User { get; set; }
     
-    public long ChairId { get; set; }
-    public Chair Chair { get; set; }
+    public long DeskId { get; set; }
+    public Desk Desk { get; set; }
 }
