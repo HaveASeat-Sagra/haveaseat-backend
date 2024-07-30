@@ -23,20 +23,29 @@ public class ReservationController(IReservationRepository _reservationRepository
     
     [HttpGet("getByDay/{date}")]
     [ProducesResponseType(typeof(List<ReservationDTO>), 200)]
-    public async Task<IActionResult> ReservationsByEmail(DateOnly date)
+    public async Task<IActionResult> ReservationsByDate(DateOnly date)
     {
         List<ReservationDTO> result = await _reservationRepository.GetReservationsByDay(date);
         if (!result.Any())
         {
-            return NotFound(new { Message = "No reservations for this day", Date = date });
+            return Ok(new List<ReservationDTO>());
         }
         return Ok(result);
     }
 
     [HttpPost("newReservation")]
-    public async Task<IActionResult> InsertReservation(AddReservationDTO reservation)
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<IActionResult> InsertReservation(NewReservationDTO reservation)
     {
-        var result = await _reservationRepository.InsertReservations(reservation);
+        NewReservationDTO result = await _reservationRepository.InsertReservations(reservation);
         return Created("Reservation added", result);
+    }
+
+    [HttpDelete("delete/{id}")]
+    [ProducesResponseType(typeof(NewReservationDTO), 202)]
+    public async Task<IActionResult> DeleteReservation(long id)
+    {
+        NewReservationDTO result = await _reservationRepository.DeleteReservationById(id);
+        return Accepted(result);
     }
 } 

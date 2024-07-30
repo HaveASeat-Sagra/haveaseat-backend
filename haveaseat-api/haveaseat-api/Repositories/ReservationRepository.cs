@@ -33,7 +33,7 @@ public class ReservationRepository(DataContext context) : IReservationRepository
         return reservationDtos;
     }
 
-    public async Task<AddReservationDTO> InsertReservations(AddReservationDTO reservation)
+    public async Task<NewReservationDTO> InsertReservations(NewReservationDTO reservation)
     {
         Reservation entry = new Reservation
         {
@@ -44,5 +44,14 @@ public class ReservationRepository(DataContext context) : IReservationRepository
         await context.Reservations.AddAsync(entry);
         await context.SaveChangesAsync();
         return reservation;
+    }
+
+    public async Task<NewReservationDTO> DeleteReservationById(long reservationId)
+    {
+        Reservation? result = await context.Reservations.FirstOrDefaultAsync(reservation => reservation.Id == reservationId);
+        NewReservationDTO reservationDto = new NewReservationDTO(result);
+        context.Reservations.Remove(result);
+        await context.SaveChangesAsync();
+        return reservationDto;
     }
 }

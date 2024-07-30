@@ -11,15 +11,15 @@ public static class MapSeeder
 
     private static class Border
     {
-        public const string Left = "none none none solid";
-        public const string TopLeft = "solid none none solid";
-        public const string Top = "solid none none none";
+        public const string Left = "-4px 0px 0px 0px black";
+        public const string TopLeft = "-2px -2px 0px 2px black";
+        public const string Top = "0px -4px 0px 0px black";
         public const string None = "none";
-        public const string Right = "none solid none none";
-        public const string Bottom = "none none solid none";
-        public const string TopRight = "solid solid none none";
-        public const string BottomLeft = "none none solid solid";
-        public const string BottomRight = "none solid solid none";
+        public const string Right = "4px 0px 0px 0px black";
+        public const string Bottom = "0px 4px 0px 0px black";
+        public const string TopRight = "2px -2px 0px 2px black";
+        public const string BottomLeft = "-2px 2px 0px 2px black";
+        public const string BottomRight = "2px 2px 0px 2px black";
     }
     public static WebApplication SeedMap(this WebApplication app)
     {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using haveaseat.DbContexts;
@@ -11,9 +12,11 @@ using haveaseat.DbContexts;
 namespace haveaseatapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240725121029_BorderMaxLength")]
+    partial class BorderMaxLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,29 +27,13 @@ namespace haveaseatapi.Migrations
 
             modelBuilder.Entity("haveaseat.Entities.Area", b =>
                 {
-                    b.Property<short>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<short>("Id"));
-
-                    b.Property<int>("Height")
+                    b.Property<int>("height")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Width")
+                    b.Property<int>("width")
                         .HasColumnType("integer");
-
-                    b.HasKey("Id");
 
                     b.ToTable("Area");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = (short)1,
-                            Height = 11,
-                            Width = 15
-                        });
                 });
 
             modelBuilder.Entity("haveaseat.Entities.Cell", b =>
