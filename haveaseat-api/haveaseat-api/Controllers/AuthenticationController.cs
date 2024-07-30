@@ -9,6 +9,7 @@ namespace haveaseat_api.Controllers;
 public class AuthenticationController(IAuthenticationRepository authenticationRepository) : ControllerBase
 {
     [HttpPost("register")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> RegisterUser(NewUserDTO newUser)
     {
         try

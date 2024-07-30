@@ -34,6 +34,7 @@ public class ReservationController(IReservationRepository _reservationRepository
     }
 
     [HttpPost("newReservation")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> InsertReservation(NewReservationDTO reservation)
     {
         NewReservationDTO result = await _reservationRepository.InsertReservations(reservation);
