@@ -15,12 +15,13 @@ Część backendowa aplikacji umożliwiającej rezerwację stanowisk pracy w bi
 - Microsoft.VisualStudio.Web.CodeGeneration.Design (8.0.3)
 - Npgsql.EntityFrameworkCore.PostgreSQL (7.0.0)
 - Swashbuckle.AspNetCore (6.5.0)
-- BCrypt.Net-Next (4.0.3)
+- BCrypt.Net-Next (4.0.3)  \
 Wykorzystane środowisko programistyczne: JetBrains Rider
+Baza danych: PostgreSQL, Docker
 
 ## Setup i baza danych
 ### Setup
-Baza danych have-a-db oparta o technologię PogreSQL i znajduje się w kontenerze Docker z pliku docker-compose.yaml. Do zarządzanie kontenerami najlepiej pobrać Docker Desktop. Aby utworzyć i uruchomić kontener, należy otworzyć wiersz poleceń w folderze, w którym znajduje się plik i wykonać komendę:
+Baza danych have-a-db oparta jest o technologię PostgreSQL i znajduje się w kontenerze Docker z pliku docker-compose.yaml. Do zarządzania kontenerami najlepiej pobrać Docker Desktop. Aby utworzyć i uruchomić kontener, należy otworzyć wiersz poleceń w folderze, w którym znajduje się plik i wykonać komendę:
 ```bash 
 docker compose up
 ```
