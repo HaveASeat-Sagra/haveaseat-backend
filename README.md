@@ -37,11 +37,11 @@ Tabele w bazie danych generowane są na podstawie encji (Entities/).
 
 **Cell** - pojedyncza komórka mapy, ma zdefiniowane położenie (PositionX, PositionY) oraz kontur, czyli ścianę na mapie. Tabela połączona jest relacją n:1 z tabelą Room (pokojami).
 
-**Desk** - pojedyncze biurko, określone jest położenie (PositionX, PositionY) oraz pozycja krzesła przy biurku (ChairPosition) opisane typem wyliczeniowym ChairPosition, w którym: 
-0 - TOP - krzesło nad biurkiem
-1 - RIGHT - krzesło na prawo od biurka (biurko skierowane w lewo)
-2 - BOTTOM - krzesło pod biurkiem 
-3 - LEFT - krzesło na lewo od biurka (biurko skierowane w prawo)
+**Desk** - pojedyncze biurko, określone jest położenie (PositionX, PositionY) oraz pozycja krzesła przy biurku (ChairPosition) opisane typem wyliczeniowym ChairPosition, w którym: \
+0 - TOP - krzesło **nad** biurkiem \
+1 - RIGHT - krzesło na **prawo** od biurka (biurko skierowane w lewo) \
+2 - BOTTOM - krzesło **pod** biurkiem \
+3 - LEFT - krzesło na **lewo** od biurka (biurko skierowane w prawo) \
 Tabela połączona jest relacją n:1 z tabelą Room (pokojami).
 
 **Room** - pokój, zawiera nazwę pokoju
