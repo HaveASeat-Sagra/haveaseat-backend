@@ -15,8 +15,9 @@ Część backendowa aplikacji umożliwiającej rezerwację stanowisk pracy w bi
 - Microsoft.VisualStudio.Web.CodeGeneration.Design (8.0.3)
 - Npgsql.EntityFrameworkCore.PostgreSQL (7.0.0)
 - Swashbuckle.AspNetCore (6.5.0)
-- BCrypt.Net-Next (4.0.3)  \
-Wykorzystane środowisko programistyczne: JetBrains Rider
+- BCrypt.Net-Next (4.0.3)  
+
+Wykorzystane środowisko programistyczne: JetBrains Rider \
 Baza danych: PostgreSQL, Docker
 
 ## Setup i baza danych
